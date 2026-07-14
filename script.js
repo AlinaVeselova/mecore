@@ -466,8 +466,7 @@ function createSystemBox(text, buttons = []) {
     div.innerHTML = `<p>${text}</p>` + buttons.map(b => `<button>${b}</button>`).join("");
     document.body.appendChild(div);
 
-    // Добавляем эффект глитча
-    div.classList.add("glitch");
+    // Добавляем эффект глитча;
 
     // Убираем класс через 300мс
     setTimeout(() => {
