@@ -1296,6 +1296,28 @@ body {
 }
 
 /* Эффект ЭЛТ-монитора */
+.app::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Слой с линиями */
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 4px, 3px 100%;
+    
+    /* ВОТ ЭТИ СТРОКИ РЕШАЮТ ПРОБЛЕМУ: */
+    pointer-events: none;      /* Слой «прозрачен» для нажатий */
+    user-select: none;         /* Не дает выделять шум как текст */
+    
+    z-index: 1000;             /* Держим поверх всего */
+    opacity: 0.3;              /* Прозрачность */
+}
+
+
 
 button, .play-btn, .next, .prev {
     cursor: pointer;
