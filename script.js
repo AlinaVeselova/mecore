@@ -465,8 +465,18 @@ function createSystemBox(text, buttons = []) {
     div.className = "system-box";
     div.innerHTML = `<p>${text}</p>` + buttons.map(b => `<button>${b}</button>`).join("");
     document.body.appendChild(div);
+
+    // Добавляем эффект глитча
+    div.classList.add("glitch");
+
+    // Убираем класс через 300мс
+    setTimeout(() => {
+        div.classList.remove("glitch");
+    }, 300);
+
     return div;
 }
+
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
