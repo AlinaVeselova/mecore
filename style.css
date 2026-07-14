@@ -1324,3 +1324,20 @@ button, .play-btn, .next, .prev {
     -webkit-tap-highlight-color: transparent; /* Убирает серую подсветку при клике */
     touch-action: manipulation; /* Помогает браузеру быстрее реагировать на нажатие */
 }
+
+.system-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #0d0f0d;
+    border: 2px solid #f1c40f;
+    padding: 20px;
+    text-align: center;
+    z-index: 10000;
+    box-shadow: 0 0 15px rgba(241, 196, 15, 0.3);
+}
+
+.system-box p { font-family: monospace; color: #f1c40f; }
+.system-box button { background: none; border: 1px solid #f1c40f; color: #f1c40f; padding: 5px 15px; margin-top: 10px; cursor: pointer; }
+
