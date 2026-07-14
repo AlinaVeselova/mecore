@@ -1,0 +1,1328 @@
+/* ===========================
+   RESET
+=========================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100dvh;
+    display: flex;
+    justify-content: center;
+    /* Убираем overflow: hidden, чтобы страница могла прокручиваться */
+    /* overflow: hidden; */ 
+    font-family: "IBM Plex Mono", monospace;
+    background: #0d0f0d;
+    color: #fff3bf;
+}
+
+/* ===========================
+   ФОН
+=========================== */
+#archive {
+    /* Фоновое изображение */
+    background: url("img/fon.png") center center / contain no-repeat;
+    /* contain растянет его так, чтобы он был виден целиком, а по бокам будет фон элемента */
+    background-color: #0d0f0d; /* Черный цвет по бокам */
+}
+.main-bg {
+    background: url("img/fon.png") center center / contain no-repeat #0d0f0d;
+}
+
+
+.noise {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.25);
+    z-index: -2;
+}
+
+/* ===========================
+   ЭКРАН
+=========================== */
+
+.app {
+    width: 100%;
+    max-width: 430px;
+    height: auto; /* Меняем со 100vh на auto */
+    padding: 18px;
+}
+
+
+/* ===========================
+   STATUS BAR
+=========================== */
+
+.status-bar {
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:16px;
+
+    color:#eef111;
+
+    font-size:13px;
+}
+
+.status-time{
+    display:flex;
+    gap:5px;
+}
+
+.status-battery{
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+}
+
+.battery{
+
+    width:28px;
+    height:12px;
+
+    border:1px solid #a7933b;
+
+    position:relative;
+
+}
+
+.battery::after{
+
+    content:"";
+
+    position:absolute;
+
+    right:-4px;
+    top:3px;
+
+    width:2px;
+    height:4px;
+
+    background:#b68627;
+
+}
+
+.battery-level{
+
+    width:19%;
+    height:100%;
+
+    background:#d8970c;
+
+}
+
+/* ===========================
+   ГЛАВНОЕ ОКНО
+=========================== */
+
+.window {
+    height: auto; /* Позволяет окну растягиваться по контенту */
+    display: flex;
+    flex-direction: column;
+    background: rgba(19, 18, 15, 0.95);
+    border: 1px solid #6d6447;
+    margin-bottom: 20px; /* Добавим отступ между блоками */
+}
+.window-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:12px 16px;
+
+    border-bottom:1px solid #6d6447;
+
+    color:#d4be8f;
+
+    font-size:14px;
+}
+
+.close-btn{
+
+    border:none;
+    background:none;
+
+    color:#a9915e;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+}
+
+/* ===========================
+   СОДЕРЖИМОЕ
+=========================== */
+
+.window-content {
+    flex: 1;
+    overflow-y: visible; /* Контент будет выводить всю высоту окна */
+    padding: 18px;
+}
+
+.sync-info,
+.recover-info{
+
+    color:#9d9377;
+
+    font-size:13px;
+
+    line-height:20px;
+
+}
+
+/* ===========================
+   КНОПКА
+=========================== */
+
+.login-btn{
+
+    width:100%;
+
+    height:42px;
+
+    background:transparent;
+
+    border:1px solid #746848;
+
+    color:#d5c091;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    font-family:inherit;
+
+}
+
+.login-btn:hover{
+
+    background:#f1c40f;
+
+    color:#111;
+
+}
+
+/* ===========================
+   MEMORY
+=========================== */
+
+.memory{
+
+    display:flex;
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+.memory-title{
+
+    display:flex;
+    justify-content:space-between;
+
+    font-size:12px;
+
+    color:#f0d860;
+
+}
+
+.progress{
+
+    width:100%;
+
+    height:8px;
+
+    border:1px solid #6d6447;
+
+}
+
+.progress-fill{
+
+    width:31%;
+    height:100%;
+
+    background:#f1c40f;
+
+}
+
+/* ===========================
+   ПАПКИ
+=========================== */
+
+.folder-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr;
+
+    gap:10px;
+
+}
+
+.folder{
+
+    display:flex;
+    align-items:center;
+
+    gap:14px;
+
+    padding:12px;
+
+    border:1px solid #544c37;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.folder:hover{
+
+    border-color:#f0d860;
+
+    background:rgba(190,160,90,.08);
+
+}
+
+.number{
+
+    color:#9a8963;
+
+    width:24px;
+
+}
+
+.name{
+
+    color:#fff3bf;
+
+}
+
+/* ===========================
+   НИЖНИЙ ТЕКСТ
+=========================== */
+
+.system-message{
+
+    margin-top:auto;
+
+    font-size:12px;
+
+    color:#8d8265;
+
+    line-height:18px;
+
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+
+.window-footer{
+    margin-top: auto;
+    display:flex;
+    justify-content:space-between;
+
+    border-top:1px solid #6d6447;
+
+    padding:12px 16px;
+
+}
+
+.footer-btn{
+
+    width:44px;
+    height:44px;
+
+    border:1px solid #6d6447;
+
+    background:none;
+
+    color:#bca879;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.footer-btn:hover{
+
+    background:#f1c40f;
+
+    color:#111;
+
+}
+
+.profile-window{
+
+    display:none;
+
+}
+
+.profile-image{
+
+    width:100%;
+
+    height:240px;
+
+    border:1px solid #665b3d;
+
+    margin-bottom:20px;
+
+    overflow:hidden;
+
+}
+
+.profile-image img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    filter:brightness(.9);
+
+}
+
+.profile-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.info-block{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+
+}
+
+.label{
+
+    color:#8d8060;
+
+    font-size:12px;
+
+}
+
+.info-block p{
+
+    color:#d0bf94;
+
+    line-height:22px;
+
+    font-size:14px;
+
+}
+
+
+#archive{
+    display: flex;
+}
+.window{
+    display:none;
+    flex-direction: column;
+}
+
+.window.active{
+    display:flex;
+}
+
+
+.inventory-title{
+
+    font-size:14px;
+
+    margin-bottom:18px;
+
+    color:#c9b27a;
+
+    font-weight:400;
+
+}
+
+.inventory-list{
+
+    list-style:none;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+}
+
+.inventory-list li{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding-bottom:10px;
+
+    border-bottom:1px solid rgba(120,108,72,.35);
+
+    color:#d3c29b;
+
+    font-size:15px;
+
+}
+
+.inventory-list li span{
+
+    margin-left:auto;
+
+    color:#a58d57;
+
+    font-size:12px;
+
+}
+
+.warning{
+
+    color:#d4ba70 !important;
+
+}
+
+.inventory-footer{
+
+    margin-top:auto;
+
+    text-align:center;
+
+    color:#8e8060;
+
+    font-size:12px;
+
+}
+
+#survival{
+    display:none;
+}
+
+.survival-title{
+
+    color:#c7b17a;
+
+    margin-bottom:20px;
+
+    font-size:15px;
+
+    font-weight:400;
+
+}
+
+.skills{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+}
+
+.skill{
+
+    display:grid;
+
+    grid-template-columns:140px 1fr;
+
+    align-items:center;
+
+    gap:14px;
+
+}
+
+.skill span{
+
+    color:#cdbb92;
+
+    font-size:13px;
+
+}
+
+.skill-bar{
+
+    height:8px;
+
+    border:1px solid #695f42;
+
+    background:#171612;
+
+}
+
+.fill{
+
+    height:100%;
+
+    background:#c5ab6e;
+
+}
+
+.companion{
+
+    margin-top:28px;
+
+    border-top:1px solid #665d40;
+
+    padding-top:20px;
+
+    display:flex;
+
+    gap:16px;
+
+}
+
+.companion img{
+
+    width:90px;
+    height:110px;
+
+    object-fit:cover;
+
+    border:1px solid #6b6144;
+
+}
+
+.companion-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+
+}
+
+.companion-info h4{
+
+    color:#d5c393;
+
+    font-weight:400;
+
+}
+
+.companion-info p{
+
+    color:#a6956d;
+
+    font-size:13px;
+
+    line-height:18px;
+
+}
+
+.survival-footer{
+
+    margin-top:20px;
+
+    text-align:center;
+
+    color:#8b8064;
+
+    font-size:12px;
+
+}
+
+#artifacts{
+    display:none;
+}
+
+.artifacts-title{
+
+    color:#c5b07a;
+
+    margin-bottom:18px;
+
+    font-size:14px;
+
+    font-weight:400;
+
+}
+
+.artifact-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:16px;
+
+}
+
+.artifact{
+
+    border:1px solid #6b6244;
+
+    padding:8px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.artifact:hover{
+
+    border-color:#c5b07a;
+
+}
+
+.artifact img{
+
+    width:100%;
+    aspect-ratio:1;
+
+    object-fit:cover;
+
+    border:1px solid #4d4632;
+
+    margin-bottom:8px;
+
+    filter:brightness(.85);
+
+}
+
+.artifact-code{
+
+    color:#8f8262;
+
+    font-size:12px;
+
+    margin-bottom:4px;
+
+}
+
+.artifact-name{
+
+    color:#d4c59f;
+
+    font-size:12px;
+
+    line-height:18px;
+
+}
+
+.artifacts-footer{
+
+    margin-top:auto;
+
+    text-align:center;
+
+    color:#8b8165;
+
+    font-size:12px;
+
+}
+
+/* ===========================
+   LOGS
+=========================== */
+
+#logs{
+    display:none;
+}
+
+.logs-title{
+
+    color:#c8b27b;
+
+    font-size:14px;
+
+    margin-bottom:18px;
+
+    font-weight:400;
+
+}
+
+.log{
+
+    border:1px solid #655b40;
+
+    padding:14px;
+
+    margin-bottom:16px;
+
+}
+
+.log-id{
+
+    color:#8f8160;
+
+    font-size:12px;
+
+    margin-bottom:10px;
+
+}
+
+.log p{
+
+    color:#d0c09a;
+
+    font-size:13px;
+
+    line-height:20px;
+
+}
+
+.logs-footer{
+
+    margin-top:auto;
+
+    text-align:center;
+
+    color:#8d8264;
+
+    font-size:12px;
+
+}
+/* ===========================
+   MUSIC
+=========================== */
+
+#music{
+    display:none;
+}
+
+.music-title{
+
+    color:#c4b07c;
+
+    margin-bottom:20px;
+
+    font-size:14px;
+
+    font-weight:400;
+
+}
+
+.player{
+
+    border:1px solid #675d42;
+
+    padding:18px;
+
+    margin-bottom:24px;
+
+}
+
+.album{
+
+    width: 280px;
+    height: auto;
+
+    margin:0 auto 18px;
+
+}
+
+.album img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    border:1px solid #6d6345;
+
+}
+
+.song-name{
+
+    text-align:center;
+
+    color:#d8c69a;
+
+    font-size:18px;
+
+    font-weight:400;
+
+}
+
+.artist{
+
+    text-align:center;
+
+    color:#958766;
+
+    margin:8px 0 18px;
+
+}
+
+.player-progress{
+
+    height:6px;
+
+    border:1px solid #655b3f;
+
+    margin-bottom:8px;
+
+}
+
+.player-fill{
+
+    width:36%;
+
+    height:100%;
+
+    background:#f1c40f;
+
+}
+
+.player-controls button {
+    border: 1px solid #f1c40f; /* Рамка кнопок */
+    color: #f1c40f;           /* Цвет иконки */
+}
+
+.player-time{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    color:#887c5e;
+
+    font-size:12px;
+
+    margin-bottom:20px;
+
+}
+
+.player-controls{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:18px;
+
+}
+
+.player-controls button{
+
+    width:46px;
+
+    height:46px;
+
+    background:none;
+
+    border:1px solid #6b6043;
+
+    color:#c7b37d;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+}
+
+.play-btn{
+
+    width:60px !important;
+
+}
+
+.playlist{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+.track{
+
+    display:grid;
+
+    grid-template-columns:35px 1fr;
+
+    align-items:center;
+
+    padding:10px;
+
+    border:1px solid #5d543c;
+
+    transition:.2s;
+
+}
+
+.track:hover{
+
+    border-color:#c4b07a;
+
+}
+
+.track span{
+
+    color:#8d8062;
+
+}
+
+.track p{
+
+    color:#d2c19a;
+
+}
+
+.track.active {
+    background: rgba(241, 196, 15, 0.15); /* Более яркий фон активации */
+    border-color: #f1c40f;                /* Яркая рамка */
+}
+/* ===========================
+   RADIO
+=========================== */
+
+#radio{
+    display:none;
+}
+
+.radio-title{
+
+    color:#f1c40f;
+
+    font-size:14px;
+
+    margin-bottom:20px;
+
+    font-weight:400;
+
+}
+
+.radio-screen{
+
+    border:1px solid #665d40;
+
+    padding:24px;
+
+    text-align:center;
+
+    margin-bottom:24px;
+
+}
+
+.frequency{
+
+    font-size:34px;
+
+    color:#d8c89d;
+
+    letter-spacing:2px;
+
+    margin-bottom:10px;
+
+}
+
+.station{
+
+    color:#98896a;
+
+    margin-bottom:18px;
+
+    font-size:13px;
+
+}
+
+.signal{
+
+    width:100%;
+
+    height:8px;
+
+    border:1px solid #6a6145;
+
+}
+
+.signal-fill{
+
+    width:75%;
+
+    height:100%;
+
+    background:#f1c40f;
+
+}
+
+.radio-controls{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:18px;
+
+    margin-bottom:24px;
+
+}
+
+.radio-controls button{
+
+    width:50px;
+
+    height:50px;
+
+    border:1px solid #665d40;
+
+    background:none;
+
+    color:#c8b37b;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.radio-controls button:hover {
+    background: rgba(241, 196, 15, 0.15); /* Подсветка при наведении */
+}
+
+.radio-message{
+
+    border-top:1px solid #665d40;
+
+    padding-top:18px;
+
+}
+
+.radio-message p{
+
+    color:#d2c39d;
+
+    line-height:22px;
+
+    font-size:13px;
+
+    text-align:center;
+
+}
+
+.radio-footer{
+
+    margin-top:auto;
+
+    text-align:center;
+
+    color:#8e8265;
+
+    font-size:12px;
+
+}
+.contact-panel{
+
+    margin-top:auto;
+
+    border-top:1px solid #665d40;
+
+    padding-top:20px;
+
+}
+
+.message-btn{
+
+    width:100%;
+
+    height:42px;
+
+    background:none;
+
+    border:1px solid #6b6144;
+
+    color:#d3c29c;
+
+    font-family:inherit;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.message-btn:hover{
+
+    background:#c3ad73;
+
+    color:#111;
+
+}
+
+.socials{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-top:18px;
+
+}
+
+.socials a{
+
+    color:#9d8d68;
+
+    text-decoration:none;
+
+    font-size:13px;
+
+    transition:.2s;
+
+}
+
+.socials a:hover{
+
+    color:#d3c29c;
+
+}
+.popup{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.7);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:999;
+
+}
+
+.popup-window{
+
+    width:320px;
+
+    background:#161511;
+
+    border:1px solid #6d6345;
+
+    padding:24px;
+
+    text-align:center;
+
+}
+
+.popup-window h3{
+
+    color:#c8b27a;
+
+    margin-bottom:18px;
+
+}
+
+.popup-window p{
+
+    color:#b8a882;
+
+    line-height:24px;
+
+}
+
+.error-code{
+
+    margin:18px 0;
+
+    color:#8c8063;
+
+}
+
+.popup-window button{
+
+    width:100%;
+
+    height:42px;
+
+    background:none;
+
+    border:1px solid #6d6345;
+
+    color:#d2c199;
+
+    cursor:pointer;
+
+}
+
+.inv-icon {
+    width: 32px; /* Установите желаемый размер */
+    height: 32px;
+    object-fit: contain; /* Чтобы картинка не растягивалась */
+    margin-right: 12px;  /* Отступ от текста */
+    filter: brightness(0.9) contrast(1.2); /* Немного приглушим/выделим под стиль сайта */
+}
+
+/* Настройка самого элемента списка */
+.inventory-list li {
+    display: flex;
+    align-items: center; /* Центрирует иконку и текст по вертикали */
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(120, 108, 72, .35);
+    color: #d3c29b;
+    font-size: 15px;
+}
+
+.radio-img {
+    display: block;
+    margin: 0 auto 10px auto; /* Центрируем и добавляем отступ снизу */
+    max-width: 280px;         /* Ограничьте ширину, чтобы не была слишком огромной */
+    height: auto;
+    filter: brightness(0.8) contrast(1.1); /* Чтобы картинка вписалась в стиль архива */
+}
+
+/* Эффект ЭЛТ-монитора */
+.app::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Горизонтальные линии (сканлайны) */
+    background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%, 
+        rgba(0, 0, 0, 0.25) 50%
+    ), 
+    linear-gradient(
+        90deg, 
+        rgba(255, 0, 0, 0.06), 
+        rgba(0, 255, 0, 0.02), 
+        rgba(0, 0, 255, 0.06)
+    );
+    background-size: 100% 4px, 3px 100%;
+    pointer-events: none; /* Чтобы можно было кликать на кнопки под эффектом */
+    z-index: 10;
+    opacity: 0.3; /* Регулируйте прозрачность для яркости линий */
+}
+
+@keyframes flicker {
+    0% { opacity: 0.27861; }
+    5% { opacity: 0.34769; }
+    10% { opacity: 0.23604; }
+    /* ... и так далее с разными значениями */
+}
