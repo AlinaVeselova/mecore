@@ -406,6 +406,74 @@ if (closePopup) {
     });
 }
 
+let idleTimer;
+let secretTriggered = sessionStorage.getItem("secretTriggered");
+
+// Функция сброса таймера
+function resetIdleTimer() {
+    if (secretTriggered) return; // Если уже показывали, ничего не делаем
+    
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(triggerSecretSequence, 60000); // 60 секунд бездействия
+}
+
+// Слушаем любую активность
+window.addEventListener("mousemove", resetIdleTimer);
+window.addEventListener("keydown", resetIdleTimer);
+window.addEventListener("click", resetIdleTimer);
+
+// Запускаем таймер при старте
+resetIdleTimer();
+
+async function triggerSecretSequence() {
+    if (secretTriggered) return;
+    secretTriggered = true;
+    sessionStorage.setItem("secretTriggered", "true");
+
+    // 1. Создаем окно "Ты еще здесь?"
+    const box = createSystemBox("...<br><br>Ты ещё здесь?", ["Да."]);
+    
+    // Ждем клика
+    await waitForClick(box);
+    box.remove();
+    
+    // 2. Серия быстрых ошибок
+    const errors = [
+        "ERROR 0xA-19",
+        "MEMORY CONFLICT",
+        "UNKNOWN U$$$ER DETECTED",
+        "ACCESS DENIED",
+        "WHO @@@RE YOU?",
+        "..."
+    ];
+
+    for (let err of errors) {
+        let b = createSystemBox(err);
+        await sleep(Math.random() * 500 + 100); // Случайная задержка
+        b.remove();
+    }
+
+    // 3. Личное сообщение
+    const final = createSystemBox("Архив не любит,<br>когда в нём задерживаются.", ["ОК"]);
+    await waitForClick(final);
+    final.remove();
+}
+
+// Вспомогательные функции
+function createSystemBox(text, buttons = []) {
+    const div = document.createElement("div");
+    div.className = "system-box";
+    div.innerHTML = `<p>${text}</p>` + buttons.map(b => `<button>${b}</button>`).join("");
+    document.body.appendChild(div);
+    return div;
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+function waitForClick(el) {
+    return new Promise(r => el.querySelector("button")?.addEventListener("click", r));
+}
+
 
 // Пока не используется.
 // На следующем этапе будем открывать PROFILE,
