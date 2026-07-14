@@ -1326,3 +1326,9 @@ body {
     10% { opacity: 0.23604; }
     /* ... и так далее с разными значениями */
 }
+
+button, .play-btn, .next, .prev {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent; /* Убирает серую подсветку при клике */
+    touch-action: manipulation; /* Помогает браузеру быстрее реагировать на нажатие */
+}
